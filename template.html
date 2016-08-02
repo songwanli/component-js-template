@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+   -->
+  <meta http-equiv="Content-Type" content="text/html; charset=Utf-8"/>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline';style-src 'self' 'unsafe-inline'; media-src *">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=medium-dpi"/>
+  <!-- js引用及调试配置 -->
+  <script type="text/javascript" src="../../pastry/main.js"
+          data-debug="@mockdata,@simbridge,@../debug/simbridge"
+          data-lib="../../public"
+          data-components="../../app/component-js-forgetpwd/getCode"
+          data-css="../../app/component-js-forgetpwd/css_bgcoffee.css"
+    ></script>
+  <title>忘记登录密码</title>
+</head>
+<body>
+</body>
+</html>
+<script type="text/template" id="CheckMsg" data-component="CheckMsg" data-title="身份验证">
+  <div class="common_bd">
+    <div class="tc fs14">
+      忘记密码了？
+      <span style="padding: 12px; display: block"></span>
+      请输入您的注册手机号
+      您将收到一封
+      关于如何重置密码的短信
+    </div>
+    <div class="common_form">
+      <div class="common_logo">
+        <img src="../component-js-forgetpwd/image/phone@1x.png" alt=""/>
+      </div>
+      <div class="common_form_cont">
+        <input type="tel" data-component="Input" class="common_form_input"  
+               id="username" data-name="USERNAME" placeholder="请输入用户名">
+      </div>
+    </div>
+    <div class="common_form">
+      <div class="common_form_cont_10">
+        <input type="tel" data-component="Input" class="common_form_input"  
+               id="sms_code" data-name="SMS_CODE" placeholder="请输入验证码">
+      </div>
+      <div class="requestyzm_out">
+        <button data-component="TransferByMobGetCode"
+                id="synCode"
+                data-infotest="短信内容"
+                data-time="60"
+                data-text-before="发送验证码"
+                data-text-after="重发"
+                data-name="SYNCODE"
+                class="command_button_sms">
+        </button>
+      </div>
+    </div>
+    <div class='tc'>
+      <button class="club_btn" id="nextSubmitBtn" data-submit-button='nextSubmitBtn'>提交</button>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="ResetPwd" data-component="ResetPwd" data-title="重置密码">
+  <div class="common_bd">
+    <span style="padding: 36px; display: block"></span>
+
+    <div id="hide">
+      <div>
+        <div class="common_title" data-component="Label" id="SAFETY_PROBLEM_1" data-name="SAFETY_PROBLEM_1"></div>
+      </div>
+      <div class="common_form">
+        <div class="common_logo">
+          <img src="../component-js-forgetpwd/image/key_small@1x.png" alt=""/>
+        </div>
+        <div class="common_form_cont">
+          <input class="common_form_input" data-component="Input" data-name="SAFETY_PROBLEM_ANSWER_1" type="text"
+                 placeholder="请输入问题1答案">
+        </div>
+      </div>
+      <div>
+        <div class="common_title" data-component="Label" id="SAFETY_PROBLEM_2" data-name="SAFETY_PROBLEM_2"></div>
+      </div>
+      <div class="common_form">
+        <div class="common_logo">
+          <img src="../component-js-forgetpwd/image/key_small@1x.png" alt=""/>
+        </div>
+        <div class="common_form_cont">
+          <input class="common_form_input" data-component="Input" data-name="SAFETY_PROBLEM_ANSWER_2" type="text"
+                 placeholder="请输入问题2答案">
+        </div>
+      </div>
+      <div>
+        <div class="common_title" data-component="Label" id="SAFETY_PROBLEM_3" data-name="SAFETY_PROBLEM_3"></div>
+      </div>
+      <div class="common_form">
+        <div class="common_logo">
+          <img src="../component-js-forgetpwd/image/key_small@1x.png" alt=""/>
+        </div>
+        <div class="common_form_cont">
+          <input class="common_form_input" data-component="Input" data-name="SAFETY_PROBLEM_ANSWER_3" type="text"
+                 placeholder="请输入问题3答案">
+        </div>
+      </div>
+    </div>
+
+    <div class="common_form">
+      <div class="common_logo">
+        <img src="../component-js-forgetpwd/image/key_small@1x.png" alt=""/>
+      </div>
+      <div class="common_form_cont">
+        <div class="common_form_input" data-component="Password" data-name="loginPassword" type="text"
+             placeholder="请输入新的登录密码">
+        </div>
+      </div>
+    </div>
+    <div class="common_form">
+      <div class="common_logo">
+        <img src="../component-js-forgetpwd/image/key_small@1x.png" alt=""/>
+      </div>
+      <div class="common_form_cont">
+        <div class="common_form_input" data-component="Password" data-name="loginPassword2" type="text"
+             placeholder="请再次确认登录密码">
+        </div>
+      </div>
+    </div>
+    <div class="tc">
+      <button id="register_btn" class="club_btn" data-submit-button="">确认修改</button>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="ResetResult" data-component="ResetResult" data-title="重置结果">
+  <div class="common_bd">
+    <div class="result_img">
+      <img src="../image/right@1x.png" alt="">
+    </div>
+    <div class="fs22">重置成功</div>
+    <div class="tc">
+      <button id="finish_btn" class="club_btn" data-submit-button="">完成</button>
+    </div>
+  </div>
+</script>
+<script type="text/javascript">
+  $(function (param) {
+    var Browser = this.Browser;
+    var Component = this.Component;
+    var Template = this.Template;
+    var Model = this.Model;
+    var api = this.api;
+    var Bridge = this.Bridge;
+
+    var problem_1 = '';
+    var problem_2 = '';
+    var problem_3 = '';
+
+    api.setModels({
+      "SAFETY_PROBLEM_1": new Model.Request(),
+      "SAFETY_PROBLEM_2": new Model.Request(),
+      "SAFETY_PROBLEM_3": new Model.Request(),
+      "getresult": new Model.Request(
+        null,
+        {
+          url: "cbframework.do?act=5080038",
+          filter: function (data) {
+            Bridge.dismissDialog();
+            if (data.RETCODE === "AAAAAAA") {
+              Browser.history_goto("ResetResult");
+            } else {
+              Bridge.errorAlert(data.RETMSG);
+            }
+          },
+          onError: function (state, response) {/*处理错误 ，一般写在组件里面  未定义组件可用写在模型里面*/
+            Bridge.dismissDialog();
+            if (response.RETCODE) {
+              Bridge.errorAlert({content: response.RETMSG});
+            } else {
+              Bridge.errorAlert({content: "网络连接超时，请检查您的网络！"});
+            }
+          }
+        }
+      )
+    })
+
+    Component.TransferByMobGetCode = Component.GetCode.extend({
+      setParam: function () {
+        return {PHONE_NO: api.getComponent('username').getValue(), BUSINESS_CODE: "3"};
+      },
+      onClick: function (data) {
+        if (data.SAFETY_PROBLEM_1 !== '') {
+          problem_1 = data.SAFETY_PROBLEM_1;
+        }
+        if (data.SAFETY_PROBLEM_2 !== '') {
+          problem_2 = data.SAFETY_PROBLEM_2;
+        }
+        if (data.SAFETY_PROBLEM_3 !== '') {
+          problem_3 = data.SAFETY_PROBLEM_3;
+        }
+        api.getModel("SAFETY_PROBLEM_1").set({SAFETY_PROBLEM_1: problem_1});
+        api.getModel("SAFETY_PROBLEM_2").set({SAFETY_PROBLEM_2: problem_2});
+        api.getModel("SAFETY_PROBLEM_3").set({SAFETY_PROBLEM_3: problem_3});
+      },
+      onTimerOver: function () {
+        //倒计时结束后操作
+      }
+    });
+
+    Component.CheckMsg = Component.Page.extend({
+      onSubmit: function (event) {
+        var data = event.data;
+        var CODEReg = new RegExp("^[a-zA-Z0-9]{6}$");
+        var username = new RegExp("^0{0,1}1[0-9]{10}$");
+        if (data.USERNAME == "" || data.USERNAME == undefined) {
+          Bridge.alert("手机号不能为空!");
+        } else if (!username.test(data.USERNAME)) {
+          Bridge.alert("手机号格式不正确!");
+        } else if (data.SMS_CODE == "" || data.SMS_CODE == undefined) {
+          Bridge.alert("验证码不能为空");
+        } else if (!CODEReg.test(data.SMS_CODE)) {
+          Bridge.alert("验证码格式不正确");
+        } else {
+          var option = {
+            refresh:{
+              id:"ResetPwd",
+              initVal:{
+                loginPassword:"",
+                loginPassword2:""
+
+              }
+            }
+          };
+          Browser.history_goto("ResetPwd",option);
+        }
+      }
+    });
+
+    Component.ResetPwd = Component.Page.extend({
+      finalRender: function () {
+        if (problem_1 == '') {
+          $('#hide').hide();
+        }
+      },
+      onSubmit: function (event) {
+        var data = event.data;
+        var answer_1 = '';
+        var answer_2 = '';
+        var answer_3 = '';
+        var passwordtext = "" + data.loginPassword;
+        if (problem_1 !== '') {
+          answer_1 = data.SAFETY_PROBLEM_ANSWER_1;
+        }
+        if (problem_2 !== '') {
+          answer_2 = data.SAFETY_PROBLEM_ANSWER_2;
+        }
+        if (problem_3 !== '') {
+          answer_3 = data.SAFETY_PROBLEM_ANSWER_3;
+        }
+        if (problem_1 !== '') {
+          if (data.SAFETY_PROBLEM_ANSWER_1 == "" || data.SAFETY_PROBLEM_ANSWER_1 == undefined) {
+            Bridge.alert("答案1不能为空!");
+          } else if (data.SAFETY_PROBLEM_ANSWER_2 == "" || data.SAFETY_PROBLEM_ANSWER_2 == undefined) {
+            Bridge.alert("答案2不能为空!");
+          } else if (data.SAFETY_PROBLEM_ANSWER_3 == "" || data.SAFETY_PROBLEM_ANSWER_3 == undefined) {
+            Bridge.alert("答案3不能为空!");
+          } else if (data.loginPassword == "" || data.loginPassword == undefined) {
+            Bridge.alert("密码不能为空!");
+          } else if (passwordtext.length < 96) {
+            Bridge.alert("密码不能少于6位!");
+          } else if (data.loginPassword2 !== data.loginPassword) {
+            Bridge.alert("两次密码输入不一致!");
+          } else {
+            var option = {
+              param: {
+                PHONE_NO: api.getComponent('username').getValue(),
+                MSG_CODE: api.getComponent('sms_code').getValue(),
+                SAFETY_PROBLEM_1: problem_1,
+                SAFETY_PROBLEM_2: problem_2,
+                SAFETY_PROBLEM_3: problem_3,
+                SAFETY_PROBLEM_ANSWER_1: answer_1,
+                SAFETY_PROBLEM_ANSWER_2: answer_2,
+                SAFETY_PROBLEM_ANSWER_3: answer_3,
+                LOG_PASSWORD: data.loginPassword
+              }
+            };
+            Bridge.showDialog(function () {
+            });
+            api.getModel('getresult').refresh(option);
+          }
+        } else {
+          if (data.loginPassword == "" || data.loginPassword == undefined) {
+            Bridge.alert("密码不能为空!");
+          } else if (passwordtext.length < 96) {
+            Bridge.alert("密码不能少于6位!");
+          } else if (data.loginPassword2 !== data.loginPassword) {
+            Bridge.alert("两次密码输入不一致!");
+          } else {
+            var option = {
+              param: {
+                PHONE_NO: api.getComponent('username').getValue(),
+                MSG_CODE: api.getComponent('sms_code').getValue(),
+                SAFETY_PROBLEM_1: problem_1,
+                SAFETY_PROBLEM_2: problem_2,
+                SAFETY_PROBLEM_3: problem_3,
+                SAFETY_PROBLEM_ANSWER_1: answer_1,
+                SAFETY_PROBLEM_ANSWER_2: answer_2,
+                SAFETY_PROBLEM_ANSWER_3: answer_3,
+                LOG_PASSWORD: data.loginPassword
+              }
+            };
+            Bridge.showDialog(function () {
+            });
+            api.getModel('getresult').refresh(option);
+          }
+        }
+      }
+    });
+
+    Component.ResetResult = Component.Page.extend({
+      onSubmit: function (data, submitId) {
+        Browser.close();
+      }
+    });
+    var option = {};
+    Browser.history_goto("CheckMsg", option);
+  });
+</script>
