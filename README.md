@@ -1,2 +1,3 @@
-# component-js-forgetpwd
-忘记密码组件
+# component-js-template
+模板组件
+
