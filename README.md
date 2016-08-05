@@ -1,2 +1,2 @@
-# component-js-register
-注册组件
+# component-js-template
+模板
